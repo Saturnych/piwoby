@@ -1,0 +1,48 @@
+{
+	"name": "piwoby",
+	"version": "0.0.1",
+	"description": "PIWO.by SvelteKit Blog",
+	"scripts": {
+		"dev": "vite dev --port 3030 --host",
+		"dev:open": "vite dev --port 3030 --host --open",
+		"start": "vite dev --host",
+		"build": "vite build",
+		"preview": "vite preview --port 3030 --host",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "eslint ."
+	},
+	"keywords": [
+		"sveltekit",
+		"typescript",
+		"supabase"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Saturnych/piwoby.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Saturnych/piwoby/issues"
+	},
+	"homepage": "https://piwo.by",
+	"author": "Denis Glebko",
+	"license": "CC0-1.0",
+	"devDependencies": {
+		"@fontsource/fira-mono": "^5.0.8",
+		"@neoconfetti/svelte": "^2.2.1",
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.5.2",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/eslint": "^8.56.0",
+		"@typescript-eslint/eslint-plugin": "^7.0.0",
+		"@typescript-eslint/parser": "^7.0.0",
+		"eslint": "^8.56.0",
+		"eslint-plugin-svelte": "^2.35.1",
+		"svelte": "^4.2.12",
+		"svelte-check": "^3.6.0",
+		"tslib": "^2.4.1",
+		"typescript": "^5.0.0",
+		"vite": "^5.0.3"
+	},
+	"type": "module"
+}
