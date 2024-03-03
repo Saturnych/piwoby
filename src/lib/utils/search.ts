@@ -1,13 +1,13 @@
 const fuzzySearch = (items, query) => {
-	let search = query?.toLowerCase().split(' ');
+	const search = query?.toLowerCase().split(' ');
 
 	console.log('search >>>', search);
-	let ret = items.reduce((found, i) => {
+	const ret = items.reduce((found, i) => {
 		let matches = 0;
 		search.forEach((s) => {
 			let props = 0;
-			for (var prop in i) {
-				let p = i[prop]?.toString().toLowerCase();
+			for (const prop in i) {
+				const p = i[prop]?.toString().toLowerCase();
 				if (p?.indexOf(s) > -1) {
 					props++;
 				}

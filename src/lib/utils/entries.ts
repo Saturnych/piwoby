@@ -70,7 +70,7 @@ const getMetadata = (entryType, filepath, entry) => {
 export const getEntries = (entryType) => {
 	if (!config.multiuser && entryType === 'authors') return [user];
 
-	let entries = getEntriesByType(entryType);
+	const entries = getEntriesByType(entryType);
 
 	return (
 		entries
@@ -91,11 +91,11 @@ export const getEntries = (entryType) => {
 
 export const getTags = () => {
 	const posts = getEntries('posts');
-	let tags = posts
+	const tags = posts
 		.flatMap(({ tags }) => tags)
 		.map((tag) => ({ text: tag, slug: slug(tag) }))
 		.reduce((arr, tag) => {
-			let index = arr.findIndex((t) => t.slug === tag.slug);
+			const index = arr.findIndex((t) => t.slug === tag.slug);
 			if (index > -1) arr[index].count++;
 			else arr.push({ text: tag.text, slug: tag.slug, count: 1 });
 			return arr;

@@ -3,7 +3,7 @@ import { browser } from '$app/environment';
 import { config } from '$lib/config';
 
 const isLocalStorageAvailable = () => {
-	var test = 'test';
+	const test = 'test';
 	try {
 		localStorage.setItem(test, test);
 		localStorage.removeItem(test);
