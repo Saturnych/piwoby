@@ -1,59 +1,24 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import Head from '$lib/components/layout/Head.svelte';
+	import Blogs from '$lib/components/Blogs.svelte';
+
+	export let data;
+	let posts = data.posts;
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
+<Head />
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
+<div class="pt-12">
+	<h1
+		class="pb-6 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14"
+	>
+		Welcome to Pied Piper!
 	</h1>
+	<p class="text-xl prose-xl text-gray-800 dark:text-gray-400">
+		This is Pied Piper's (un)official blog. Amoung many other things, Pied Piper offers a middle-out
+		compression solution making data storage problems smaller. To get the updates, please check this
+		site often, or subscribe to our RSS feed.
+	</p>
+</div>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
+<Blogs title="Latest Posts" h2 {posts} search={false} count={3} />
