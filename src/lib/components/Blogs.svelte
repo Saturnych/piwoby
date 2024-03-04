@@ -19,7 +19,7 @@
 		posts = posts.slice(0, count);
 	}
 
-	$: filter = $page.url.searchParams.get('query');
+	$: filter = $page.url?.searchParams.get('query');
 	$: currentPosts = filter ? fuzzySearch(posts, filter) : posts;
 </script>
 

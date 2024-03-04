@@ -5,7 +5,7 @@
 	let search = '';
 
 	onMount(() => {
-		search = $page.url.searchParams.get('query');
+		search = $page.url?.searchParams.get('query');
 		if (search) {
 			document.getElementById('search').focus();
 		}
