@@ -10,7 +10,7 @@ export const config = {
 	siteRepo: 'https://github.com/Saturnych/piwoby',
 	siteLogo: '/icon-512.png',
 	// image: '/img/avatar.png',
-	email: 'm@saturnych.ru',
+	email: 'saturnych@gmail.com',
 	github: 'https://github.com/Saturnych',
 	twitter: 'https://twitter.com/Saturnych',
 	facebook: 'https://www.facebook.com/Saturnych',
@@ -37,7 +37,7 @@ export const user = {
 
 export const navLinks = [
 	{ href: '/about', title: 'About' },
-	{ href: '/projects', title: 'Projects' },
+	//{ href: '/projects', title: 'Projects' },
 	{ href: '/blog', title: 'Blog' }
 ];
 

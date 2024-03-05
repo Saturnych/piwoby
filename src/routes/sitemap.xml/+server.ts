@@ -49,7 +49,7 @@ const sitemap = (posts, pages) => `<?xml version="1.0" encoding="UTF-8" ?>
 					? null
 					: `
     <url>
-      <loc>${config.siteUrl}/${post.slug}</loc>
+      <loc>${config.siteUrl}/blog/${post.slug}</loc>
       <changefreq>daily</changefreq>
       <priority>0.7</priority>
     </url>

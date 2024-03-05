@@ -17,7 +17,7 @@ export async function GET() {
 	posts.forEach((posts) => {
 		feed.item({
 			title: posts.title,
-			url: config.siteUrl + `/${posts.slug}`,
+			url: config.siteUrl + `/blog/${posts.slug}`,
 			date: posts.date,
 			description: posts.summary
 		});
