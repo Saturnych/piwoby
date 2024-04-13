@@ -46,7 +46,7 @@ precacheAndRoute([
 
 // Edit the list of routes so they get cached and routed correctly, allowing
 // cold start or hot reload to work offline.
-const skRoutes = ['/', '/offline'];
+const skRoutes = ['/offline'];
 
 precache(skRoutes.map(f => {
     return {
