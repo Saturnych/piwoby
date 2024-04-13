@@ -33,7 +33,7 @@
 		rel="noreferrer"
 	>
 		<span class="sr-only">{icon}</span>
-		<svelte:component this={svg} class="{size} " />
+		<svelte:component this={svg} />
 		<span>
 			<slot />
 		</span>

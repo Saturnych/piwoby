@@ -2,18 +2,12 @@ import { getEntries, getTags } from '$lib/utils/entries';
 // import { tags } from '$lib/data/tags';
 import { error } from '@sveltejs/kit';
 
-/** @type {import('./$types').PageServerLoad} */
-export async function load() {
+export const load: PageLoad = async ({ url: { pathname } }): Promise<Record<string, any>> => {
 	const posts = getEntries('posts');
-	if (!posts) {
-		throw error(404, 'No post found');
-	}
-
+	if (!posts) throw error(404, 'No post found');
 	const tags = getTags();
-
 	return {
-		// eslint-disable-next-line no-unused-vars
-		posts: posts,
-		tags: tags
+		posts,
+		tags,
 	};
-}
+};

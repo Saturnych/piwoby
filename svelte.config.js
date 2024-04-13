@@ -1,5 +1,4 @@
 import adapter from '@sveltejs/adapter-auto';
-//import { vitePreprocess } from '@sveltejs/kit/vite';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
 import mdsvexConfig from './mdsvex.config.js';
@@ -12,7 +11,7 @@ const config = {
 		prerender: {
 			handleHttpError: ({ path, referrer, message }) => {
 				// ignore deliberate link to shiny 404 page
-				if (path === '/not-found' && referrer === '/blog/how-we-built-our-404-page') {
+				if (path === '/404' && referrer.startsWith('/blog')) {
 					return;
 				}
 				// otherwise fail the build

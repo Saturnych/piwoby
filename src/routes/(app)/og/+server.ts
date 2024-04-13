@@ -1,11 +1,11 @@
 // used the following as a reference: https://geoffrich.net/posts/svelte-social-image/
 import satori from 'satori';
+import { html as toReactNode } from 'satori-html';
 import { Resvg } from '@resvg/resvg-js';
+import { openGraph } from '$lib/config';
 import Saira from '$lib/fonts/Saira-ExtraBold.ttf';
 import OpenSans from '$lib/fonts/OpenSans-ExtraBold.ttf';
-import { html as toReactNode } from 'satori-html';
 import OGTemplate from '$lib/components/OGTemplate.svelte';
-import { openGraph } from '$lib/config';
 
 const width = openGraph.width;
 const height = openGraph.height;

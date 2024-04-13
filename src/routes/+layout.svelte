@@ -14,7 +14,7 @@
 	<div class="flex h-screen flex-col justify-between">
 		<Header />
 		<main class="mb-auto">
-			<Transition pathname={data?.pathname}>
+			<Transition pathname={data?.pathname || '/'}>
 				<slot />
 			</Transition>
 		</main>
@@ -23,3 +23,7 @@
 </div>
 
 <Analytics />
+
+{#await import('$lib/components/ReloadPrompt.svelte') then { default: ReloadPrompt }}
+	<ReloadPrompt />
+{/await}
