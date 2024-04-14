@@ -7,7 +7,7 @@
 	import Analytics from '$lib/components/analytics/index.svelte';
 	import '../app.css';
 
-  export let data: PageData = $page.data;
+	export let data: PageData = $page.data;
 </script>
 
 <div class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">

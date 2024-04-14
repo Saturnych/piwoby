@@ -54,7 +54,7 @@ const getMetadata = (entryType, filepath, entry) => {
 			? entry.metadata.video.replace(
 					/(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)(\.com)?\/(watch\?v=)?/,
 					''
-			  )
+				)
 			: null,
 
 		tag: entry.metadata.type?.split(' ').shift().toLowerCase() || null,

@@ -4,7 +4,8 @@ const ENV = Object.assign(dynamic_private, import.meta.env);
 
 // SUPABASE
 export const PRIVATE_SUPABASE_SERVICE_KEY: string = ENV.PRIVATE_SUPABASE_SERVICE_KEY || '';
-export const PRIVATE_JWT_SECRET: string = ENV.PRIVATE_JWT_SECRET || 'some-not-very-nice-very-long-key';
+export const PRIVATE_JWT_SECRET: string =
+	ENV.PRIVATE_JWT_SECRET || 'some-not-very-nice-very-long-key';
 export const PRIVATE_PASS_SECRET: string = ENV.PRIVATE_PASS_SECRET || PRIVATE_JWT_SECRET;
 
 // DB

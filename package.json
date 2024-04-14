@@ -18,6 +18,17 @@
 		"type": "git",
 		"url": "https://github.com/Saturnych/piwoby.git"
 	},
+  "bugs": {
+    "url": "https://github.com/Saturnych/piwoby/issues"
+  },
+	"homepage": "https://piwo.by/",
+	"keywords": [
+		"sveltekit",
+		"typescript",
+		"mdsvex"
+	],
+  "author": "Denis Glebko",
+  "license": "ISC",
 	"devDependencies": {
 		"@fontsource/fira-mono": "^5.0.12",
 		"@neoconfetti/svelte": "^2.2.1",

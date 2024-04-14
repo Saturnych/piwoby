@@ -1,13 +1,16 @@
+import { author, homepage, repository } from '../../package.json';
+
 export const config = {
-	title: 'PIWO.by',
-	author: 'Denis Glebko',
-	headerTitle: 'Пиво Беларуси',
-	description: 'Пиво Беларуси - первый белорусский пивной портал',
-	language: 'ru-ru',
+	author,
+	title: 'Blog Title',
+	headerTitle: 'Blog Header',
+	description: 'Blog Description',
+	language: 'en-en',
+	locale: 'en-US',
 	theme: 'system', // system, dark or light
-	domain: 'https://piwo.by/',
-	siteUrl: 'https://piwo.by',
-	siteRepo: 'https://github.com/Saturnych/piwoby',
+	domain: homepage,
+	siteUrl: homepage,
+	siteRepo: repository.url,
 	siteLogo: '/icon-512.png',
 	// image: '/img/avatar.png',
 	email: 'saturnych@gmail.com',
@@ -16,8 +19,18 @@ export const config = {
 	facebook: 'https://www.facebook.com/Saturnych',
 	//youtube: 'https://www.youtube.com/watch?v=p3RwX06wcBs',
 	linkedin: 'https://www.linkedin.com/in/saturn/',
-	locale: 'ru-RU',
 	primaryColor: '#06a261',
+
+	// giscus.app
+	repo: repository.url.replace('https://github.com/','').replace('.git',''),
+	repoId: 'R_kgDOLtsxPw',
+	category: 'General',
+	categoryId: 'DIC_kwDOLtsxP84Cercp',
+	//theme: 'light_tritanopia',
+	loading: 'lazy',
+	inputPosition: 'top',
+	mapping: 'pathname',
+	emitMetadata: '1',
 
 	// supports buttondown, convertkit, emailoctopus, klaviyo, mailchimp, revue
 	// use false or null to disable newsletter
@@ -28,16 +41,16 @@ export const config = {
 };
 
 export const user = {
-	name: 'admin',
+	name: 'Saturnych',
 	// avatar value can be removed for image
 	avatar: '/logo.png',
 	// twitter value can be removed for no link to twitter
-	twitter: 'https://twitter.com/piedpiperplc'
+	twitter: 'https://twitter.com/Saturnych'
 };
 
 export const navLinks = [
 	{ href: '/about', title: 'About' },
-	//{ href: '/projects', title: 'Projects' },
+	{ href: '/projects', title: 'Projects' },
 	{ href: '/blog', title: 'Blog' }
 ];
 

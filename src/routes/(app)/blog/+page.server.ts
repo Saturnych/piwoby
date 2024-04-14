@@ -8,6 +8,6 @@ export const load: PageLoad = async ({ url: { pathname } }): Promise<Record<stri
 	const tags = getTags();
 	return {
 		posts,
-		tags,
+		tags
 	};
 };
