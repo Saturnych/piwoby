@@ -8,7 +8,8 @@
 	onMount(() => {
 		darkMode = isDarkMode();
 		let dataTheme = config.theme ?? 'preferred_color_scheme'
-		if (darkMode && dataTheme.startsWith('light_')) dataTheme = dataTheme.replace('light_','dark_');
+		//if (darkMode && dataTheme.startsWith('light_')) dataTheme = dataTheme.replace('light_','dark_');
+		//else if (dataTheme.startsWith('dark_')) dataTheme = dataTheme.replace('dark_','light_');
 
 		const giscus = document.createElement('script');
 		giscus.src = 'https://giscus.app/client.js';

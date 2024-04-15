@@ -1,7 +1,5 @@
 const fuzzySearch = (items, query) => {
 	const search = query?.toLowerCase().split(' ');
-
-	console.log('search >>>', search);
 	const ret = items.reduce((found, i) => {
 		let matches = 0;
 		search.forEach((s) => {

@@ -8,6 +8,7 @@
 	import '../app.css';
 
 	export let data: PageData = $page.data;
+	const SW_ENABLED = false;
 </script>
 
 <div class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
@@ -24,6 +25,8 @@
 
 <Analytics />
 
-{#await import('$lib/components/ReloadPrompt.svelte') then { default: ReloadPrompt }}
-	<ReloadPrompt />
-{/await}
+{#if SW_ENABLED}
+	{#await import('$lib/components/ReloadPrompt.svelte') then { default: ReloadPrompt }}
+		<ReloadPrompt />
+	{/await}
+{/if}

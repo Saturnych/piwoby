@@ -1,12 +1,14 @@
-<script>
+<script lang="ts">
 	import { config } from '$lib/config';
 	import Tag from '$lib/components/Tag.svelte';
 	import Author from '$lib/components/Author.svelte';
+	import Error from '$lib/components/Error.svelte';
+	import Comments from '$lib/components/comment/index.svelte';
 
 	export let post;
 	export let author;
 </script>
-
+{#if post}
 <div class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
 	<article>
 		<div class="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
@@ -56,7 +58,7 @@
 							class="flex justify-center space-x-8 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8"
 						>
 							<li class="flex items-center space-x-2">
-								<Author author={author.name} avatar={author.avatar} twitter={author.twitter} />
+								<Author author={author?.name} avatar={author?.avatar} twitter={author?.twitter} />
 							</li>
 						</ul>
 					</dd>
@@ -67,6 +69,7 @@
 					<div class="prose max-w-none pt-10 pb-8 dark:prose-dark">
 						{@html post.content}
 					</div>
+					<Comments />
 				</div>
 				<footer class="">
 					<div
@@ -126,3 +129,6 @@
 		</div>
 	</article>
 </div>
+{:else}
+<Error status="404" />
+{/if}

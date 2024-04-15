@@ -20,7 +20,7 @@ const getAuthors = () => {
 	return Object.entries(import.meta.glob('/content/authors/**/*.md', { eager: true }));
 };
 
-const getEntriesByType = (entryType) => {
+const getEntriesByType = (entryType: string) => {
 	switch (entryType) {
 		case 'posts':
 			return getPosts();
@@ -67,11 +67,9 @@ const getMetadata = (entryType, filepath, entry) => {
 };
 
 // Get all entries and add metadata
-export const getEntries = (entryType) => {
+export const getEntries = (entryType: string) => {
 	if (!config.multiuser && entryType === 'authors') return [user];
-
 	const entries = getEntriesByType(entryType);
-
 	return (
 		entries
 			// format metadata and content
@@ -89,9 +87,24 @@ export const getEntries = (entryType) => {
 	);
 };
 
-export const getTags = () => {
-	const posts = getEntries('posts');
+export const getEntriesByTag = (tagSlug: string) => {
+	return getEntries('posts').filter(e => e.tags.map(t=>t.toLowerCase()).includes(tagSlug.toLowerCase()));
+};
+
+export const getEntryBySlug = (entrySlug: string) => {
+	const entries = getEntries('posts').filter(e => e.slug===entrySlug);
+	return entries?.length > 0 ? entries[0] : null
+};
+
+export const getAuthorByName = (authorName: string) => {
+	const entries = getEntries('authors').filter(e => e.name===authorName);
+	return entries?.length > 0 ? entries[0] : null
+};
+
+export const getTags = (entrySlug?: string) => {
+	const posts = entrySlug ? [getEntryBySlug(entrySlug)] : getEntries('posts');
 	const tags = posts
+		.filter(p=>!!p)
 		.flatMap(({ tags }) => tags)
 		.map((tag) => ({ text: tag, slug: slug(tag) }))
 		.reduce((arr, tag) => {
@@ -101,6 +114,5 @@ export const getTags = () => {
 			return arr;
 		}, [])
 		.sort((a, b) => (b.text < a.text ? 1 : -1));
-
 	return tags;
 };

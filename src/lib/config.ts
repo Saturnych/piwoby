@@ -21,17 +21,6 @@ export const config = {
 	linkedin: 'https://www.linkedin.com/in/saturn/',
 	primaryColor: '#06a261',
 
-	// giscus.app
-	repo: repository.url.replace('https://github.com/','').replace('.git',''),
-	repoId: 'R_kgDOLtsxPw',
-	category: 'General',
-	categoryId: 'DIC_kwDOLtsxP84Cercp',
-	//theme: 'light_tritanopia',
-	loading: 'lazy',
-	inputPosition: 'top',
-	mapping: 'pathname',
-	emitMetadata: '1',
-
 	// supports buttondown, convertkit, emailoctopus, klaviyo, mailchimp, revue
 	// use false or null to disable newsletter
 	// check .env.example for settings needed values for each service
@@ -73,32 +62,32 @@ export const comment = {
 	giscus: {
 		// Visit the link below, and follow the steps in the 'configuration' section
 		// https://giscus.app/
-		repo: 'akiarostami/sveltekit-tailwind-blog-starter',
-		reposId: 'R_kgDOIen4kw',
-		category: 'Sample Site Comments',
-		categoryId: 'DIC_kwDOIen4k84CS9tX',
+		repo: repository.url.replace('https://github.com/','').replace('.git',''),
+		reposId: 'R_kgDOLtsxPw',
+		category: 'General',
+		categoryId: 'DIC_kwDOLtsxP84Cercp',
 		mapping: 'pathname', // supported options: pathname, url, title
 		reactionsEnabled: '1', // Emoji reactions: 1 = enable / 0 = disable
 		// Send discussion metadata periodically to the parent window: 1 = enable / 0 = disable
-		metadata: '0',
+		emitMetadata: '1',
 		// theme example: light, dark, dark_dimmed, dark_high_contrast
 		// Place the comment box above the comments. options: bottom, top
-		inputPosition: 'bottom',
+		inputPosition: 'top',
 		// Choose the language giscus will be displayed in. options: en, es, zh-CN, zh-TW, ko, ja etc
 		lang: 'en',
 		dataStrict: '0',
 		loading: 'lazy',
 		// theme example: light, dark, preferred_color_scheme, light_high_contrast, dark_high_contrast
 		// light_protanopia, dark_protanopiam, light_tritanopia, dark_tritanopia, dark_dimmed, transparent_dark
-		theme: 'light',
+		theme: 'preferred_color_scheme',
 		// theme when dark mode
-		darkTheme: 'dark',
+		darkTheme: 'dark_tritanopia',
 		themeURL: ''
 	},
 	utterances: {
 		// Visit the link below, and follow the steps in the 'configuration' section
 		// https://utteranc.es/
-		repo: 'akiarostami/sveltekit-tailwind-blog-starter',
+		repo: repository.url.replace('https://github.com/','').replace('.git',''),
 		issueTerm: 'pathname', // supported options: pathname, url, title
 		label: 'Comment 💬', // label (optional): Comment 💬
 		// theme example: github-light, github-dark, preferred-color-scheme
