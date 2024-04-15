@@ -2,9 +2,9 @@ import { author, homepage, repository } from '../../package.json';
 
 export const config = {
 	author,
-	title: 'Blog Title',
-	headerTitle: 'Blog Header',
-	description: 'Blog Description',
+	title: 'Piwo.by',
+	headerTitle: 'Пиво Беларуси',
+	description: 'Пиво Беларуси',
 	language: 'en-en',
 	locale: 'en-US',
 	theme: 'system', // system, dark or light
