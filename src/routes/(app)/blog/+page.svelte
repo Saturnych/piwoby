@@ -7,6 +7,6 @@
 	const tags = data.tags;
 </script>
 
-<Head title="Blog" />
+<Head title="Статьи" />
 
-<Blogs title="All Posts" {posts} {tags} />
+<Blogs title="Статьи" {posts} {tags} />
