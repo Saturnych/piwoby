@@ -11,7 +11,7 @@ export const config = {
 	domain: homepage,
 	siteUrl: homepage,
 	siteRepo: repository.url,
-	siteLogo: '/icon-512.png',
+	siteLogo: '/logo.png',
 	// image: '/img/avatar.png',
 	email: 'saturnych@gmail.com',
 	github: 'https://github.com/Saturnych',
