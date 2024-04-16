@@ -69,7 +69,6 @@
 					<div class="prose max-w-none pt-10 pb-8 dark:prose-dark">
 						{@html post.content}
 					</div>
-					<Comments />
 				</div>
 				<footer class="">
 					<div

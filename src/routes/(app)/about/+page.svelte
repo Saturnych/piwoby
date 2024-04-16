@@ -7,14 +7,14 @@
 	import Title from '$lib/components/Title.svelte';
 
 	export let data: PageData;
-	const { authors } = data;
+	const { post, authors = [] } = data;
 </script>
 
-<Head title="About" />
+<Head title="{post?.title}" />
 
 <div class="divide-y divide-gray-200 dark:divide-gray-700">
 	<div class="space-y-2 pt-6 pb-8 md:space-y-5">
-		<Title title="About" />
+		<Title title="{post?.title}" />
 	</div>
 	<div class="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
 		<div class="flex flex-col items-center py-6">
@@ -27,14 +27,10 @@
 			</div>
 		</div>
 		<div class="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2">
-			Pied Piper (PP) was an American tech company based in Silicon Valley, California. The company
-			was formed in 2014 by Richard Hendricks as a company to develop Richard's algorithm that he'd
-			created. The company is best known to for achieving the highest Weissman score in history
-			during their presentation at TechCrunch Disrupt. The company's first appearance was in the
-			Season One episode Minimum Viable Product and has since served as the primary company for the
-			series.
+			{@html post?.content}
 		</div>
 	</div>
+	{#if authors?.length>0}
 	<div class="space-y-2 py-8 md:space-y-5">
 		<Title h2 title="Contributors" />
 		<div class="grid xl:grid-cols-3 grid-cols-2 gap-4">
@@ -57,4 +53,5 @@
 			{/each}
 		</div>
 	</div>
+	{/if}
 </div>

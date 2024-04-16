@@ -20,6 +20,10 @@ const getAuthors = () => {
 	return Object.entries(import.meta.glob('/content/authors/**/*.md', { eager: true }));
 };
 
+const getPages = () => {
+	return Object.entries(import.meta.glob('/content/pages/**/*.md', { eager: true }));
+};
+
 const getEntriesByType = (entryType: string) => {
 	switch (entryType) {
 		case 'posts':
@@ -28,6 +32,8 @@ const getEntriesByType = (entryType: string) => {
 			return getProjects();
 		case 'authors':
 			return getAuthors();
+		case 'pages':
+			return getPages();
 		default:
 			throw new Error(`unknown entry type ${entryType}`);
 	}
@@ -91,8 +97,8 @@ export const getEntriesByTag = (tagSlug: string) => {
 	return getEntries('posts').filter(e => e.tags.map(t=>t.toLowerCase()).includes(tagSlug.toLowerCase()));
 };
 
-export const getEntryBySlug = (entrySlug: string) => {
-	const entries = getEntries('posts').filter(e => e.slug===entrySlug);
+export const getEntryBySlug = (entrySlug: string, entryType: string = 'posts') => {
+	const entries = getEntries(entryType).filter(e => e.slug===entrySlug);
 	return entries?.length > 0 ? entries[0] : null
 };
 

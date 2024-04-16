@@ -5,8 +5,8 @@ export const config = {
 	title: 'Piwo.by',
 	headerTitle: 'Пиво Беларуси',
 	description: 'Пиво Беларуси',
-	language: 'en-en',
-	locale: 'en-US',
+	language: 'ru-ru',
+	locale: 'ru-RU',
 	theme: 'system', // system, dark or light
 	domain: homepage,
 	siteUrl: homepage,
@@ -38,9 +38,9 @@ export const user = {
 };
 
 export const navLinks = [
-	{ href: '/about', title: 'About' },
+	{ href: '/about', title: 'О сайте' },
 	//{ href: '/projects', title: 'Projects' },
-	{ href: '/blog', title: 'Blog' }
+	{ href: '/blog', title: 'Статьи' }
 ];
 
 export const openGraph = {

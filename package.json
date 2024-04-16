@@ -1,7 +1,7 @@
 {
 	"name": "piwoby",
-	"version": "0.0.1",
-	"description": "PIWO.by SvelteKit Blog",
+	"version": "0.0.2",
+	"description": "PIWO.by Blog",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev --port 4040 --host",

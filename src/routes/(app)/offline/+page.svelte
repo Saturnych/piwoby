@@ -2,7 +2,7 @@
 	import Head from '$lib/components/layout/Head.svelte';
 </script>
 
-<Head />
+<Head title="Offline" />
 
 <div class="pt-64 mx-auto w-64 text-center">
 	<h1 class="text-9xl font-bold text-outline">Offline</h1>
