@@ -13,7 +13,7 @@ export const config = {
 	siteRepo: repository.url,
 	siteLogo: '/logo.png',
 	// image: '/img/avatar.png',
-	email: 'saturnych@gmail.com',
+	email: 'm@piwo.by',
 	github: 'https://github.com/Saturnych',
 	twitter: 'https://twitter.com/Saturnych',
 	facebook: 'https://www.facebook.com/Saturnych',
