@@ -3,20 +3,20 @@
 	import Title from '$lib/components/Title.svelte';
 
 	export let data;
-	const projects = data.projects;
+	const { breweries = [] } = data;
 </script>
 
 <div class="divide-y divide-gray-200 dark:divide-gray-700">
 	<div class="space-y-2 pt-6 pb-8 md:space-y-5">
-		<Title title="Projects" subtitle="The great things we have done and are doing at Pied Piper" />
+		<Title title="Пивзаводы" subtitle="Список белорусских пивзаводов на начало 21-го века" />
 	</div>
 	<div class="container py-12">
 		<div class="-m-4 flex flex-wrap">
-			{#if !projects.length}
-				No project found.
+			{#if breweries.length<1}
+				Нет записей
 			{:else}
-				{#each projects as project}
-					<Card card={project} />
+				{#each breweries as brewery}
+					<Card card={brewery} />
 				{/each}
 			{/if}
 		</div>

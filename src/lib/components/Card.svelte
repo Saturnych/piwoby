@@ -33,7 +33,10 @@
 		<div class="p-6">
 			<h2 class="mb-3 text-2xl font-bold leading-8 tracking-tight">
 				{#if card.href}
-					<a href={card.href} aria-label={`Link to ${card.title}`}>
+					<a href={card.href}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label={`Link to ${card.title}`}>
 						{card.title}
 					</a>
 				{:else}
@@ -41,15 +44,13 @@
 				{/if}
 			</h2>
 			<p class="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{card.description}</p>
-			{#if card.href}
+			{#if card.slug}
 				<a
-					href={card.href}
-					target="_blank"
-					rel="noopener noreferrer"
+					href={`/breweries/${card.slug}`}
 					class="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-					aria-label={`Link to ${card.title}`}
+					aria-label={`Подробнее о ${card.title}`}
 				>
-					Learn more &rarr;
+					Далее &rarr;
 				</a>
 			{/if}
 		</div>

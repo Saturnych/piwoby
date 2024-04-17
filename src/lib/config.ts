@@ -38,9 +38,10 @@ export const user = {
 };
 
 export const navLinks = [
-	{ href: '/about', title: 'О сайте' },
+	{ href: '/breweries', title: 'Пивзаводы' },
+	{ href: '/blog', title: 'Статьи' },
 	//{ href: '/projects', title: 'Projects' },
-	{ href: '/blog', title: 'Статьи' }
+	{ href: '/about', title: 'О сайте' },
 ];
 
 export const openGraph = {

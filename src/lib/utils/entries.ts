@@ -24,6 +24,10 @@ const getPages = () => {
 	return Object.entries(import.meta.glob('/content/pages/**/*.md', { eager: true }));
 };
 
+const getBreweries = () => {
+	return Object.entries(import.meta.glob('/content/breweries/**/*.md', { eager: true }));
+};
+
 const getEntriesByType = (entryType: string) => {
 	switch (entryType) {
 		case 'posts':
@@ -34,6 +38,8 @@ const getEntriesByType = (entryType: string) => {
 			return getAuthors();
 		case 'pages':
 			return getPages();
+		case 'breweries':
+			return getBreweries();
 		default:
 			throw new Error(`unknown entry type ${entryType}`);
 	}
@@ -64,7 +70,8 @@ const getMetadata = (entryType, filepath, entry) => {
 			: null,
 
 		tag: entry.metadata.type?.split(' ').shift().toLowerCase() || null,
-		tags: entry.metadata.tags || []
+		tags: entry.metadata.tags || [],
+		labels: entry.metadata.labels || [],
 
 		// whether or not this file is `my-post.md` or `my-post/index.md`
 		// (needed to do correct dynamic import in posts/[slug].svelte)

@@ -9,7 +9,7 @@
 	<svelte:element
 		this={selected}
 		class="{h2
-			? 'text-2xl sm:text-3xl md:text-5xl'
+			? 'text-2xl sm:text-3xl md:text-4xl'
 			: 'text-3xl sm:text-4xl md:text-6xl'} font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:leading-10 md:leading-14 capitalize"
 	>
 		{title}
