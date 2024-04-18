@@ -1,10 +1,13 @@
 <script lang="ts">
 	import Card from '$lib/components/Card.svelte';
 	import Title from '$lib/components/Title.svelte';
+	import Head from '$lib/components/layout/Head.svelte';
 
 	export let data;
 	const { breweries = [] } = data;
 </script>
+
+<Head title="Пивзаводы" />
 
 <div class="divide-y divide-gray-200 dark:divide-gray-700">
 	<div class="space-y-2 pt-6 pb-8 md:space-y-5">
