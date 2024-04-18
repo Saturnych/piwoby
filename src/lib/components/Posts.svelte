@@ -6,6 +6,8 @@
 	import { page } from '$app/stores';
 	import fuzzySearch from '$lib/utils/search';
 
+	export let base = 'blog';
+	export let tagsBase = 'tags';
 	export let title = '';
 	export let subtitle = '';
 	export let posts = [];
@@ -41,7 +43,7 @@
 							<div class="mr-5">
 								<Tag text={tag.text} size="text-xs" />
 								<a
-									href={`/tags/${tag.slug}`}
+									href={`/${tagsBase}/${tag.slug}`}
 									class="-ml-2 text-xs font-semibold uppercase text-gray-600 dark:text-gray-300"
 								>
 									{` (${tag.count})`}
@@ -66,7 +68,7 @@
 								<div class="space-y-6">
 									<div>
 										<h2 class="text-2xl font-bold leading-8 tracking-tight">
-											<a href={`/blog/${post.slug}`} class="text-gray-900 dark:text-gray-100">
+											<a href={`/${base}/${post.slug}`} class="text-gray-900 dark:text-gray-100">
 												{post.title}
 											</a>
 										</h2>
@@ -83,9 +85,9 @@
 								{#if more}
 									<div class="text-base font-medium leading-6">
 										<a
-											href={`/blog/${post.slug}`}
+											href={`/${base}/${post.slug}`}
 											class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-											aria-label={`Read "${post.title}"`}
+											aria-label={`Читать "${post.title}"`}
 										>
 											Далее &rarr;
 										</a>

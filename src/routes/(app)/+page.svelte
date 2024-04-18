@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Head from '$lib/components/layout/Head.svelte';
-	import Blogs from '$lib/components/Blogs.svelte';
+	import Posts from '$lib/components/Posts.svelte';
 	import { config } from '$lib/config';
 
 	export let data;
@@ -16,4 +16,4 @@
 	</p>
 </div>
 
-<Blogs title="Последние статьи" {posts} search={false} count={3} h2 />
+<Posts {posts} base="news" title="Последние новости" search={false} count={3} h2 />

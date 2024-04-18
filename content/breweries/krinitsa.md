@@ -3,6 +3,7 @@ title: ОАО "Криница"
 date: 2020-02-01
 draft: true
 description: Описание пивзавода Криница
+author: saturnych
 href: https://www.krinitsa.by
 image: /img/krinitsa.png
 labels:

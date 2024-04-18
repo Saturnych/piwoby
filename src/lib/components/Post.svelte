@@ -6,7 +6,11 @@
 	//import Comments from '$lib/components/comment/index.svelte';
 
 	export let post;
+	export let title;
+	export let base;
 	export let author;
+
+	console.log('post:', post);
 </script>
 {#if post}
 <div class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
@@ -25,7 +29,7 @@
 				<div class="space-y-1 text-center">
 					<div>
 						<h1
-							class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14"
+							class="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-3xl md:leading-14"
 						>
 							{post.title}
 						</h1>
@@ -51,8 +55,9 @@
 				class="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
 				style="grid-template-rows: auto 1fr;"
 			>
+			{#if author}
 				<dl class="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
-					<dt class="sr-only">Authors</dt>
+					<dt class="sr-only">Автор</dt>
 					<dd>
 						<ul
 							class="flex justify-center space-x-8 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8"
@@ -63,6 +68,12 @@
 						</ul>
 					</dd>
 				</dl>
+			{:else}
+			<dl class="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
+				<dt class="sr-only">Автор</dt>
+				<dd>{post?.author}</dd>
+			</dl>
+			{/if}
 				<div
 					class="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0"
 				>
@@ -96,7 +107,7 @@
 										<div
 											class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
 										>
-											<a href={`/blog/${post.prev.slug}`}>{post.prev.title}</a>
+											<a href={`/${base}/${post.prev.slug}`}>{post.prev.title}</a>
 										</div>
 									</div>
 								{/if}
@@ -108,7 +119,7 @@
 										<div
 											class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
 										>
-											<a href={`/blog/${post.next.slug}`}>{post.next.title}</a>
+											<a href={`/${base}/${post.next.slug}`}>{post.next.title}</a>
 										</div>
 									</div>
 								{/if}
@@ -117,10 +128,10 @@
 					</div>
 					<div class="pt-4 xl:pt-8">
 						<a
-							href="/blog"
+							href="/{base}"
 							class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
 						>
-							&larr; Back to the blog
+							&larr; Назад в "{title}"
 						</a>
 					</div>
 				</footer>

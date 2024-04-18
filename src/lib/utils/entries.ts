@@ -12,6 +12,10 @@ const getPosts = () => {
 	return Object.entries(import.meta.glob('/content/posts/**/*.md', { eager: true }));
 };
 
+const getNews = () => {
+	return Object.entries(import.meta.glob('/content/news/**/*.md', { eager: true }));
+};
+
 const getProjects = () => {
 	return Object.entries(import.meta.glob('/content/projects/**/*.md', { eager: true }));
 };
@@ -32,6 +36,8 @@ const getEntriesByType = (entryType: string) => {
 	switch (entryType) {
 		case 'posts':
 			return getPosts();
+		case 'news':
+			return getNews();
 		case 'projects':
 			return getProjects();
 		case 'authors':
@@ -100,17 +106,18 @@ export const getEntries = (entryType: string) => {
 	);
 };
 
-export const getEntriesByTag = (tagSlug: string) => {
-	return getEntries('posts').filter(e => e.tags.map(t=>t.toLowerCase()).includes(tagSlug.toLowerCase()));
+export const getEntriesByTag = (tagSlug: string, entryType?: string) => {
+	const entries = entryType ? getEntries(entryType) : getEntries('news').concat(getEntries('posts'));
+	return entries.filter(e => e.tags.map(t=>t.toLowerCase()).includes(tagSlug.toLowerCase()));
 };
 
 export const getEntryBySlug = (entrySlug: string, entryType: string = 'posts') => {
 	const entries = getEntries(entryType).filter(e => e.slug===entrySlug);
-	return entries?.length > 0 ? entries[0] : null
+	return entries?.length > 0 ? entries[0] : null;
 };
 
-export const getAuthorByName = (authorName: string) => {
-	const entries = getEntries('authors').filter(e => e.name===authorName);
+export const getAuthorBy = (authorName: string, by: string = 'name') => {
+	const entries = getEntries('authors').filter(e => e[by].toLowerCase()===authorName.toLowerCase());
 	return entries?.length > 0 ? entries[0] : null
 };
 

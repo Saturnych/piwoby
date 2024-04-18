@@ -27,7 +27,7 @@
 		"typescript",
 		"mdsvex"
 	],
-  "author": "Denis Glebko",
+  "author": "Saturnych",
   "license": "ISC",
 	"devDependencies": {
 		"@fontsource/fira-mono": "^5.0.12",

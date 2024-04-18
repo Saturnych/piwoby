@@ -38,8 +38,9 @@ export const user = {
 };
 
 export const navLinks = [
-	{ href: '/breweries', title: 'Пивзаводы' },
-	{ href: '/blog', title: 'Статьи' },
+	{ href: '/news', title: 'Новости' },
+	{ href: '/posts', title: 'Статьи' },
+	{ href: '/zavod', title: 'Пивзаводы' },
 	//{ href: '/projects', title: 'Projects' },
 	{ href: '/about', title: 'О сайте' },
 ];
