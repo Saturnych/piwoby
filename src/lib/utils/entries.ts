@@ -1,4 +1,5 @@
 import { slug } from 'github-slugger';
+import { error } from '@sveltejs/kit';
 import { browser } from '$app/environment';
 import { config, user } from '$lib/config';
 
@@ -103,7 +104,7 @@ export const getEntriesByTag = (tagSlug: string, entryType?: string) => {
 };
 
 export const getEntryBySlug = (entrySlug: string, entryType?: string) => {
-	const entries = [].concat(entryType ? getEntriesByType(entryType) : getEntries()).filter(e => e.slug.toLowerCase()===entrySlug.toLowerCase());
+	const entries = [].concat(entryType ? getEntriesByType(entryType) : getEntries()).filter(e => (e?.slug ? e.slug.toLowerCase()===entrySlug.toLowerCase() : false));
 	return entries?.length > 0 ? entries[0] : null;
 };
 
@@ -115,7 +116,6 @@ export const getAuthorBy = (authorName: string, by?: string) => {
 
 export const getTags = (entrySlug?: string) => {
 	const entries = entrySlug ? [getEntryBySlug(entrySlug)] : getEntries();
-	console.log('entries:', entries);
 	const tags = entries
 		.filter(p=>!!p)
 		.flatMap(({ tags }) => tags)
@@ -128,4 +128,11 @@ export const getTags = (entrySlug?: string) => {
 		}, [])
 		.sort((a, b) => (b.text < a.text ? 1 : -1));
 	return tags;
+};
+
+export const getSlugs = (pathname: string): string[] => {
+	const slugs: string[] = pathname.split('/').filter(p=>p.length>0).map(s=>decodeURIComponent(s));
+	const slug: string = [].concat(slugs).reverse()[0];
+	if (slug.startsWith('manifest')) throw error(404, 'Not found');
+	return slugs;
 };

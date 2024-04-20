@@ -1,11 +1,11 @@
-import { getAuthorBy, getEntryBySlug, getEntriesByType, getTags } from '$lib/utils/entries';
+import { getAuthorBy, getEntryBySlug, getEntriesByType, getTags, getSlugs } from '$lib/utils/entries';
 import type { Event } from '$lib/utils';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event: Event): Promise<Record<string, any>> => {
 	const parent = await event.parent();
   console.log('path parent:', parent);
-  const slugs = parent.pathname.split('/').filter(p=>!!p).map(s=>decodeURIComponent(s));
+  const slugs = getSlugs(parent.pathname);
   console.log('path slugs:', slugs);
 	const tags = getTags();
 	console.log('path tags:', tags);
