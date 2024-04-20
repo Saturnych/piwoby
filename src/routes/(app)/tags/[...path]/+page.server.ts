@@ -5,9 +5,8 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event: Event): Promise<Record<string, any>> => {
   const parent = await event.parent();
-  const slug = parent.pathname.split('/').filter(p=>!!p).reverse()[0];
+  const slug = decodeURIComponent(parent.pathname.split('/').filter(p=>!!p).reverse()[0])
   const posts = getEntriesByTag(slug);
-	if (!posts) throw error(404, 'No posts found');
 	const tags = getTags();
 	return {
 		...parent,

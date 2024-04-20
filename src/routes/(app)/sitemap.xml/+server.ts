@@ -7,7 +7,7 @@ const trimSlash = (str) => str.replace(/^\/|\/$/g, '');
 
 export async function GET() {
 	const pages = navLinks;
-	const posts = getEntries('posts');
+	const posts = getEntries();
 	const body = sitemap(posts, pages);
 
 	return new Response(body, {

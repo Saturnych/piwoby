@@ -7,92 +7,42 @@ if (browser) {
 	throw new Error(`projects can only be imported server-side`);
 }
 
-// we have to have separate functions for this because Vite only accepts literal strings for import.meta.glob
-const getPosts = () => {
-	return Object.entries(import.meta.glob('/content/posts/**/*.md', { eager: true }));
-};
-
-const getNews = () => {
-	return Object.entries(import.meta.glob('/content/news/**/*.md', { eager: true }));
-};
-
-const getProjects = () => {
-	return Object.entries(import.meta.glob('/content/projects/**/*.md', { eager: true }));
-};
-
-const getAuthors = () => {
-	return Object.entries(import.meta.glob('/content/authors/**/*.md', { eager: true }));
-};
-
-const getPages = () => {
-	return Object.entries(import.meta.glob('/content/pages/**/*.md', { eager: true }));
-};
-
-const getBreweries = () => {
-	return Object.entries(import.meta.glob('/content/breweries/**/*.md', { eager: true }));
-};
-
-const getEntriesByType = (entryType: string) => {
-	switch (entryType) {
-		case 'posts':
-			return getPosts();
-		case 'news':
-			return getNews();
-		case 'projects':
-			return getProjects();
-		case 'authors':
-			return getAuthors();
-		case 'pages':
-			return getPages();
-		case 'breweries':
-			return getBreweries();
-		default:
-			throw new Error(`unknown entry type ${entryType}`);
-	}
-};
-
-const getMetadata = (entryType, filepath, entry) => {
+const getMetadata = (filepath, entry) => {
+	const { metadata = {} } = entry;
+	const slugs = filepath
+		.replace(/(\/index)?\.md/, '')
+		.split('/')
+		.filter(s=>s.length>0);
 	return {
-		...entry.metadata,
-
-		author: entryType === 'posts' && !config.multiuser ? user.name : entry.metadata.author,
-
+		...metadata,
+		author: !config.multiuser ? user.name : metadata?.author,
 		content: entry.default.render().html,
-
 		// generate the slug from the file path
-		slug: filepath
-			.replace(/(\/index)?\.md/, '')
-			.split('/')
-			.pop(),
-
-		// twitter: entry.metadata.twitter
-		// 	? entry.metadata.twitter.replace(/(http(s)?:\/\/)?((w){3}.)?twitter\.com\/?/, '')
+		type: slugs[1],
+		slug: slugs[2],
+		// twitter: metadata?.twitter
+		// 	? metadata.twitter.replace(/(http(s)?:\/\/)?((w){3}.)?twitter\.com\/?/, '')
 		// 	: null,
-		youtube: entry.metadata.video
-			? entry.metadata.video.replace(
+		youtube: metadata?.video
+			? metadata.video.replace(
 					/(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)(\.com)?\/(watch\?v=)?/,
 					''
 				)
 			: null,
-
-		tag: entry.metadata.type?.split(' ').shift().toLowerCase() || null,
-		tags: entry.metadata.tags || [],
-		labels: entry.metadata.labels || [],
-
+		tag: metadata?.type?.split(' ').shift().toLowerCase() || null,
+		tags: metadata?.tags || [],
+		labels: metadata?.labels || [],
 		// whether or not this file is `my-post.md` or `my-post/index.md`
 		// (needed to do correct dynamic import in posts/[slug].svelte)
 		// isIndexFile: filepath.endsWith('/index.md')
 	};
 };
 
-// Get all entries and add metadata
-export const getEntries = (entryType: string) => {
-	if (!config.multiuser && entryType === 'authors') return [user];
-	const entries = getEntriesByType(entryType);
+export const mapEntries = (entries) => {
 	return (
 		entries
 			// format metadata and content
-			.map(([filepath, entry]) => getMetadata(entryType, filepath, entry))
+			.map(([filepath, entry]) => getMetadata(filepath, entry))
 			// remove drafts
 			.filter((entry) => !entry.draft)
 			// sort by date
@@ -106,24 +56,67 @@ export const getEntries = (entryType: string) => {
 	);
 };
 
-export const getEntriesByTag = (tagSlug: string, entryType?: string) => {
-	const entries = entryType ? getEntries(entryType) : getEntries('news').concat(getEntries('posts'));
-	return entries.filter(e => e.tags.map(t=>t.toLowerCase()).includes(tagSlug.toLowerCase()));
+
+// we have to have separate actions for this because Vite only accepts literal strings for import.meta.glob
+const getContent = (entryTypes: string[]): Record<string,object[]> => {
+	const content: Record<string,object[]> = {};
+	for (let i=0;i<entryTypes.length;i++) {
+		const entryType: string = entryTypes[i];
+		switch (entryType) {
+			case 'news':
+				content[entryType] = mapEntries(Object.entries(import.meta.glob('/content/news/**/*.md', { eager: true })));
+				break;
+			case 'projects':
+				content[entryType] = mapEntries(Object.entries(import.meta.glob('/content/projects/**/*.md', { eager: true })));
+				break;
+			case 'authors':
+				content[entryType] = mapEntries(Object.entries(import.meta.glob('/content/authors/**/*.md', { eager: true })));
+				break;
+			case 'pages':
+				content[entryType] = mapEntries(Object.entries(import.meta.glob('/content/pages/**/*.md', { eager: true })));
+				break;
+			case 'breweries':
+				content[entryType] = mapEntries(Object.entries(import.meta.glob('/content/breweries/**/*.md', { eager: true })));
+				break;
+			case 'posts':
+				content[entryType] = mapEntries(Object.entries(import.meta.glob('/content/posts/**/*.md', { eager: true })));
+				break;
+		}
+	}
+	return content;
 };
 
-export const getEntryBySlug = (entrySlug: string, entryType: string = 'posts') => {
-	const entries = getEntries(entryType).filter(e => e.slug===entrySlug);
+// Get all entries and add metadata
+export const getEntries = (): object[] => {
+	const { news = [], posts = [], breweries = [], pages = [] } = getContent(['news','posts','breweries','pages']);
+	return [].concat(news, posts, breweries, pages);
+};
+
+export const getEntriesByType = (entryType?: string) => {
+	if (!config.multiuser && entryType === 'authors') return [user];
+	return getContent([entryType])[entryType];
+};
+
+export const getEntriesByTag = (tagSlug: string, entryType?: string) => {
+	const entries = entryType ? getEntriesByType(entryType) : getEntries();
+	return entries?.length > 0 ? entries.filter(e => (e.tags ? e.tags.map(t=>t.toLowerCase()).includes(tagSlug.toLowerCase()) : false)) : [];
+};
+
+export const getEntryBySlug = (entrySlug: string, entryType?: string) => {
+	const entries = [].concat(entryType ? getEntriesByType(entryType) : getEntries()).filter(e => e.slug.toLowerCase()===entrySlug.toLowerCase());
 	return entries?.length > 0 ? entries[0] : null;
 };
 
-export const getAuthorBy = (authorName: string, by: string = 'name') => {
-	const entries = getEntries('authors').filter(e => e[by].toLowerCase()===authorName.toLowerCase());
+export const getAuthorBy = (authorName: string, by?: string) => {
+	const { authors } = getContent(['authors']);
+	const entries = !by ? authors.filter(e => (e['id'].toLowerCase()===authorName.toLowerCase() || e['name'].toLowerCase()===authorName.toLowerCase())) : authors.filter(e => e[by].toLowerCase()===authorName.toLowerCase());
 	return entries?.length > 0 ? entries[0] : null
 };
 
 export const getTags = (entrySlug?: string) => {
-	const posts = entrySlug ? [getEntryBySlug(entrySlug)] : getEntries('posts');
-	const tags = posts
+	const entries = entrySlug ? [getEntryBySlug(entrySlug)] : getEntries();
+	console.log('entries:', entries);
+	const tags = entries
 		.filter(p=>!!p)
 		.flatMap(({ tags }) => tags)
 		.map((tag) => ({ text: tag, slug: slug(tag) }))

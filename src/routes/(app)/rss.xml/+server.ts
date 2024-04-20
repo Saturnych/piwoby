@@ -13,7 +13,7 @@ export async function GET() {
 		feed_url: config.siteUrl + '/rss.xml'
 	});
 
-	const posts = getEntries('posts');
+	const posts = getEntries();
 	posts.forEach((posts) => {
 		feed.item({
 			title: posts.title,

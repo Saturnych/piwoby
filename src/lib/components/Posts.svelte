@@ -6,7 +6,7 @@
 	import { page } from '$app/stores';
 	import fuzzySearch from '$lib/utils/search';
 
-	export let base = 'blog';
+	export let base = 'posts';
 	export let tagsBase = 'tags';
 	export let title = '';
 	export let subtitle = '';
@@ -34,7 +34,7 @@
 
 			<div class="pl-4" class:border-l-2={search}>
 				{#if search}
-					<SearchBox />
+					<SearchBox {base} />
 				{/if}
 
 				{#if tags.length}
@@ -56,7 +56,7 @@
 		</div>
 	</div>
 	{#if !currentPosts.length}
-		No post found.
+		Нет записей
 	{:else}
 		<ul>
 			{#each currentPosts as post}
@@ -68,7 +68,7 @@
 								<div class="space-y-6">
 									<div>
 										<h2 class="text-2xl font-bold leading-8 tracking-tight">
-											<a href={`/${base}/${post.slug}`} class="text-gray-900 dark:text-gray-100">
+											<a href={`/${post.type}/${post.slug}`} class="text-gray-900 dark:text-gray-100">
 												{post.title}
 											</a>
 										</h2>
@@ -85,7 +85,7 @@
 								{#if more}
 									<div class="text-base font-medium leading-6">
 										<a
-											href={`/${base}/${post.slug}`}
+											href={`/${post.type}/${post.slug}`}
 											class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
 											aria-label={`Читать "${post.title}"`}
 										>

@@ -5,9 +5,9 @@
 	import Error from '$lib/components/Error.svelte';
 	//import Comments from '$lib/components/comment/index.svelte';
 
+	export let base;
 	export let post;
 	export let title;
-	export let base;
 	export let author;
 
 	console.log('post:', post);
@@ -107,7 +107,7 @@
 										<div
 											class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
 										>
-											<a href={`/${base}/${post.prev.slug}`}>{post.prev.title}</a>
+											<a href={`/${post.type}/${post.prev.slug}`}>{post.prev.title}</a>
 										</div>
 									</div>
 								{/if}
@@ -119,7 +119,7 @@
 										<div
 											class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
 										>
-											<a href={`/${base}/${post.next.slug}`}>{post.next.title}</a>
+											<a href={`/${post.type}/${post.next.slug}`}>{post.next.title}</a>
 										</div>
 									</div>
 								{/if}
@@ -128,7 +128,7 @@
 					</div>
 					<div class="pt-4 xl:pt-8">
 						<a
-							href="/{base}"
+							href="/{post.type}"
 							class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
 						>
 							&larr; Назад в "{title}"

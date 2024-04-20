@@ -3,9 +3,9 @@
 	import Posts from '$lib/components/Posts.svelte';
 
 	export let data;
-	const { posts = [], tags = [], slug = '' } = data;
+	const { title = 'Теги', posts = [], tags = [], slug = '' } = data;
 </script>
 
-<Head title="Blog" />
+<Head title="{title}" />
 
-<Posts title="Posts by tag '{slug}'" search={false} {posts} {tags} />
+<Posts title="Записи по тегу '{slug}'" search={false} {posts} {tags} />

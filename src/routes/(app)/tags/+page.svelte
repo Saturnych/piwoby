@@ -4,7 +4,7 @@
 	import Tag from '$lib/components/Tag.svelte';
 
 	export let data;
-	const { title = 'Tags', tags = [], search = false } = data;
+	const { title = 'Теги', tags = [], search = false } = data;
 </script>
 
 <Head title="{title}" />

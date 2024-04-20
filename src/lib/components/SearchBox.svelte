@@ -2,6 +2,8 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+
+	export let base = 'news';
 	let search = '';
 
 	onMount(() => {
@@ -13,9 +15,9 @@
 
 	async function handleSubmit() {
 		if (search && search.length) {
-			goto(`/blog?query=${search}`, { keepFocus: true });
+			goto(`/${base}?query=${search}`, { keepFocus: true });
 		} else {
-			goto(`/blog`);
+			goto(`/${base}`);
 		}
 	}
 </script>
@@ -26,9 +28,9 @@
 			bind:value={search}
 			id="search"
 			name="search"
-			aria-label="Search posts"
+			aria-label="Поиск по записям"
 			type="text"
-			placeholder="Search posts"
+			placeholder="Поиск по записям"
 			class="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
 		/>
 		<svg

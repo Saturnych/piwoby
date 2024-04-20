@@ -16,4 +16,4 @@
 	</p>
 </div>
 
-<Posts {posts} base="news" title="Последние новости" search={false} count={3} h2 />
+<Posts {posts} search={false} count={3} h2 title="Последние новости" />

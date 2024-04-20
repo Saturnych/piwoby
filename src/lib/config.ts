@@ -26,15 +26,17 @@ export const config = {
 	// check .env.example for settings needed values for each service
 	newsletter: 'mailchimp',
 
-	multiuser: true
+	multiuser: false,
 };
 
 export const user = {
-	name: 'Saturnych',
-	// avatar value can be removed for image
-	avatar: '/logo.png',
-	// twitter value can be removed for no link to twitter
-	twitter: 'https://twitter.com/Saturnych'
+	id: 'Saturnych',
+	name: 'Денис Глебко',
+	avatar: '/img/saturnych.jpg',
+	email: 'saturnych@gmail.com',
+	twitter: 'https://twitter.com/Saturnych',
+	linkedin: 'https://www.linkedin.com/in/saturn/',
+	github: 'https://github.com/Saturnych',
 };
 
 export const navLinks = [
@@ -42,7 +44,7 @@ export const navLinks = [
 	{ href: '/posts', title: 'Статьи' },
 	{ href: '/zavod', title: 'Пивзаводы' },
 	//{ href: '/projects', title: 'Projects' },
-	{ href: '/about', title: 'О сайте' },
+	{ href: '/pages/about', title: 'О сайте' },
 ];
 
 export const openGraph = {
