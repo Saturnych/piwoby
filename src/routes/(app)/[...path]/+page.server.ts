@@ -7,7 +7,7 @@ export const load: PageServerLoad = async (event: Event): Promise<Record<string,
   console.log('path parent:', parent);
   const slugs = getSlugs(parent.pathname);
   console.log('path slugs:', slugs);
-	const tags = getTags();
+	const tags = getTags(slugs[0]);
 	console.log('path tags:', tags);
 	let posts: object[], post: object, author: object, slug: string;
 	if (slugs?.length>1) {

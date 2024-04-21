@@ -1,21 +1,22 @@
 <script lang="ts">
 	import Card from '$lib/components/Card.svelte';
-	import Title from '$lib/components/Title.svelte';
 	import Head from '$lib/components/layout/Head.svelte';
+	import SearchTags from '$lib/components/SearchTags.svelte';
 
 	export let data;
-	const { breweries = [] } = data;
+	const { slugs = [], breweries = [], tags = [], title = 'Пивзаводы', subtitle = 'Список белорусских пивзаводов на начало 21-го века', search = true, h2 = false } = data;
+	const total: number = breweries?.length ?? 0;
+	const base: string = slugs?.length > 0 ? slugs[0] : 'breweries';
 </script>
 
 <Head title="Пивзаводы" />
 
 <div class="divide-y divide-gray-200 dark:divide-gray-700">
-	<div class="space-y-2 pt-6 pb-8 md:space-y-5">
-		<Title title="Пивзаводы" subtitle="Список белорусских пивзаводов на начало 21-го века" />
-	</div>
+	<SearchTags {tags} {base} {search} {total} {title} {subtitle} {h2} />
+
 	<div class="container py-12">
 		<div class="-m-4 flex flex-wrap">
-			{#if breweries.length<1}
+			{#if total<1}
 				Нет записей
 			{:else}
 				{#each breweries as brewery}

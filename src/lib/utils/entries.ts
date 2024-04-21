@@ -114,9 +114,8 @@ export const getAuthorBy = (authorName: string, by?: string) => {
 	return entries?.length > 0 ? entries[0] : null
 };
 
-export const getTags = (entrySlug?: string) => {
-	const entries = entrySlug ? [getEntryBySlug(entrySlug)] : getEntries();
-	const tags = entries
+const mapTags = (entries: object[]) => {
+	return entries
 		.filter(p=>!!p)
 		.flatMap(({ tags }) => tags)
 		.map((tag) => ({ text: tag, slug: slug(tag) }))
@@ -127,7 +126,13 @@ export const getTags = (entrySlug?: string) => {
 			return arr;
 		}, [])
 		.sort((a, b) => (b.text < a.text ? 1 : -1));
-	return tags;
+}
+
+export const getTagsBySlug = (entrySlug: string) => mapTags([getEntryBySlug(entrySlug)]);
+
+export const getTags = (entryType?: string) => {
+	const entries = entryType ? getEntriesByType(entryType) : getEntries();
+	return mapTags(entries);
 };
 
 export const getSlugs = (pathname: string): string[] => {

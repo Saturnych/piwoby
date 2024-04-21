@@ -20,9 +20,7 @@
 	<div class="flex items-center text-base leading-5">
 		<div class="hidden sm:block">
 			{#each navLinks as link}
-				<a href={link.href} class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4"
-					>{link.title}</a
-				>
+				<nobr><a href={link.href} class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">{link.title}</a></nobr>
 			{/each}
 		</div>
 		<ThemeSwitch />

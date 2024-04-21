@@ -6,7 +6,7 @@ export const load: PageServerLoad = async (event: Event): Promise<Record<string,
 	const parent = await event.parent();
   const slugs = getSlugs(parent.pathname);
 	const posts = getEntriesByType(slugs[0]);
-	const tags = getTags();
+	const tags = getTags(slugs[0]);
 	return {
 		posts,
 		slugs,
