@@ -20,7 +20,7 @@ const config = {
 			}
 		},
 		// remove this if you're not using comment system
-		csp: { mode: 'auto' }
+		//csp: { mode: 'auto' }
 	},
 	preprocess: [mdsvex(mdsvexConfig), vitePreprocess()]
 };
