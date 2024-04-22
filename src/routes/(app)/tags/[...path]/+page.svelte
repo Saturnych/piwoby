@@ -8,4 +8,4 @@
 
 <Head title="{title}" />
 
-<Posts title="Записи по тегу '{slug}'" search={false} {posts} {tags} />
+<Posts title="Записи по тегу '{slug.split('-').join(' ')}'" search={false} {posts} {tags} />

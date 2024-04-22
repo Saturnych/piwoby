@@ -100,7 +100,7 @@ export const getEntriesByType = (entryType?: string) => {
 
 export const getEntriesByTag = (tagSlug: string, entryType?: string) => {
 	const entries = entryType ? getEntriesByType(entryType) : getEntries();
-	return entries?.length > 0 ? entries.filter(e => (e.tags ? e.tags.map(t=>t.toLowerCase()).includes(tagSlug.toLowerCase()) : false)) : [];
+	return entries?.length > 0 ? entries.filter(e => (e.tags ? e.tags.map(t=>t.split(' ').join('-').toLowerCase()).includes(tagSlug.split(' ').join('-').toLowerCase()) : false)) : [];
 };
 
 export const getEntryBySlug = (entrySlug: string, entryType?: string) => {
