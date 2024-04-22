@@ -6,10 +6,11 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async (event: Event): Promise<Record<string, any>> => {
   const parent = await event.parent();
   const slugs = getSlugs(parent.pathname);
-  console.log('pages/path slugs:', slugs);
+  const slug = [].concat(slugs).reverse()[0];
   const post = getEntryBySlug(slugs[1], slugs[0]);
 	return {
-		...parent,
     post,
+    slugs,
+    slug,
 	};
 };
