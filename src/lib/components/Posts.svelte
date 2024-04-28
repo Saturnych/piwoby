@@ -26,7 +26,7 @@
 </script>
 
 <div class="divide-y divide-gray-200 dark:divide-gray-700">
-	<SearchTags {tags} {base} {search} {total} {title} {subtitle} {h2} />
+	<SearchTags {tagsBase} {tags} {base} {search} {total} {title} {subtitle} {h2} />
 
 	<div class="container py-12">
 		<div class="-m-4 flex flex-wrap">
