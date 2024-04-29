@@ -1,6 +1,7 @@
-import { author, homepage, repository } from '../../package.json';
+import { version, author, homepage, repository } from '../../package.json';
 
 export const config = {
+	version,
 	author,
 	title: 'Piwo.by',
 	headerTitle: 'Пиво Беларуси',
@@ -20,12 +21,10 @@ export const config = {
 	//youtube: 'https://www.youtube.com/watch?v=p3RwX06wcBs',
 	linkedin: 'https://www.linkedin.com/in/saturn/',
 	primaryColor: '#06a261',
-
 	// supports buttondown, convertkit, emailoctopus, klaviyo, mailchimp, revue
 	// use false or null to disable newsletter
 	// check .env.example for settings needed values for each service
-	newsletter: 'mailchimp',
-
+	newsletter: false, //'mailchimp',
 	multiuser: false,
 };
 
