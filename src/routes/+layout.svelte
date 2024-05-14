@@ -13,10 +13,6 @@
 	const SW_ENABLED = dev;
 </script>
 
-{#if !dev}
-	<Metrika />
-{/if}
-
 <div class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
 	<div class="flex h-screen flex-col justify-between">
 		<Header />
@@ -29,7 +25,10 @@
 	</div>
 </div>
 
-<Analytics />
+{#if !dev}
+	<Metrika />
+	<Analytics />
+{/if}
 
 {#if SW_ENABLED}
 	{#await import('$lib/components/ReloadPrompt.svelte') then { default: ReloadPrompt }}
