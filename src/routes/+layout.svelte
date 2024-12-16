@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '../app.css';
 	import type { PageData } from './$types';
 	import { dev } from '$app/environment';
 	import { page } from '$app/stores';
@@ -7,9 +8,9 @@
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import Analytics from '$lib/components/analytics/index.svelte';
-	import '../app.css';
+	
+	let { children, data } = $props();
 
-	export let data: PageData = $page.data;
 	const SW_ENABLED = dev;
 </script>
 
@@ -17,8 +18,8 @@
 	<div class="flex h-screen flex-col justify-between">
 		<Header />
 		<main class="mb-auto">
-			<Transition pathname={data?.pathname || '/'}>
-				<slot />
+			<Transition pathname={$page.url?.pathname || '/'}>
+				{@render children()}
 			</Transition>
 		</main>
 		<Footer />
