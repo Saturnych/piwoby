@@ -1,7 +1,7 @@
 {
 	"name": "piwoby",
 	"version": "0.0.2",
-	"description": "PIWO.by Blog",
+	"description": "PIWO.by SvelteKit Blog",
 	"private": false,
 	"type": "module",
 	"license": "MIT",
