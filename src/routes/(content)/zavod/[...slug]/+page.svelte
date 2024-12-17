@@ -2,11 +2,12 @@
 	import Head from '$lib/components/layout/Head.svelte';
 	import Brewery from '$lib/components/Brewery.svelte';
 
-	export let data;
-	const { brewery } = data;
-	console.log(brewery);
+	let { data } = $props();
+	
+	const { post } = data;
+	console.log(post);
 </script>
 
-<Head title="{brewery?.title}" />
+<Head title="{post?.title}" />
 
-<Brewery {brewery} />
+<Brewery {post} />

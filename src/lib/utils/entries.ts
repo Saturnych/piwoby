@@ -135,9 +135,9 @@ export const getTags = (entryType?: string) => {
 	return mapTags(entries);
 };
 
-export const getSlugs = (pathname: string): string[] => {
-	const slugs: string[] = pathname.split('/').filter(p=>p.length>0).map(s=>decodeURIComponent(s));
-	const slug: string = [].concat(slugs).reverse()[0];
+export const getSlugs = (pathname: string = ''): string[] => {
+	const slugs: string[] = pathname.split('/').filter(p=>!!p).map(s=>decodeURIComponent(s));
+	const slug: string = slugs?.length > 0 ? [].concat(slugs).reverse()[0] : '';
 	if (slug.startsWith('manifest')) throw error(404, 'Not found');
 	return slugs;
 };

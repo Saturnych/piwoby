@@ -21,7 +21,7 @@
 		{/if}
 		<div class="mb-4 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
 			<a href="{config.siteUrl}">{config.title}</a> &nbsp; • &nbsp; © {year}
-			<a href="{`mailto:${config.email}`}">{config.author}</a> &nbsp; • &nbsp; <a href="{config.siteUrl}rss.xml">RSS Feed</a>
+			<a href="{`mailto:${config.email}`}">{config.author}</a> &nbsp; • &nbsp; <a href="/rss.xml">RSS Feed</a>
 		</div>
 	</div>
 </footer>

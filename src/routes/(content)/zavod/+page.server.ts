@@ -1,15 +1,5 @@
-import { getEntriesByType, getSlugs, getTags } from '$lib/utils/entries';
-import type { Event } from '$lib/utils';
-import type { PageServerLoad } from './$types';
+import { loadContent } from '$lib/utils';
+import type { Event, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async (event: Event): Promise<Record<string, any>> => {
-	const parent = await event.parent();
-  const slugs = getSlugs(parent.pathname);
-	const tags = getTags('breweries');
-	const breweries = getEntriesByType('breweries');
-	return {
-		breweries,
-		slugs,
-		tags,
-	};
-};
+export const load = (event: Event): Record<string, string | string[] | Content | Content[]> =>
+  loadContent(event.url) satisfies PageServerLoad;

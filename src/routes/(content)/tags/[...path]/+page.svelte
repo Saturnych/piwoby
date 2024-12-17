@@ -2,7 +2,8 @@
 	import Head from '$lib/components/layout/Head.svelte';
 	import Posts from '$lib/components/Posts.svelte';
 
-	export let data;
+	let { data } = $props();
+	
 	const { title = 'Теги', posts = [], tags = [], slug = '' } = data;
 </script>
 

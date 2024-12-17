@@ -6,7 +6,8 @@
 	import SocialIcon from '$lib/components/SocialIcon.svelte';
 	import Title from '$lib/components/Title.svelte';
 
-	export let data: PageData;
+	let { data } = $props();
+	
 	const { post, authors = [] } = data;
 </script>
 

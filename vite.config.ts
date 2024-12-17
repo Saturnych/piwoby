@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
 	plugins: [sveltekit()],
+	/*
 	server: {
 		fs: {
 			// Allow serving files from one level up to the project root
@@ -11,5 +12,6 @@ export default defineConfig({
 	},
 	define: {
 		__VERSION__: JSON.stringify(process.env.npm_package_version)
-	}
+	},
+	*/
 });

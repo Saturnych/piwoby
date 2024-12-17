@@ -3,7 +3,8 @@
 	import Title from '$lib/components/Title.svelte';
 	import Tag from '$lib/components/Tag.svelte';
 
-	export let data;
+	let { data } = $props();
+	
 	const { title = 'Теги', tags = [], search = false } = data;
 </script>
 

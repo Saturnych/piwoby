@@ -1,28 +1,37 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { getQsParam } from '$lib/utils';
 	import fuzzySearch from '$lib/utils/search';
 	import Author from '$lib/components/Author.svelte';
 	import Tag from '$lib/components/Tag.svelte';
 	import SearchTags from '$lib/components/SearchTags.svelte';
 
-	export let base = 'posts';
-	export let tagsBase = 'tags';
-	export let title = '';
-	export let subtitle = '';
-	export let posts = [];
-	export let tags = [];
-	export let more = true;
-	export let search = true;
-	export let h2 = false;
-	export let count = 0;
+	let {
+		root,
+		base = 'posts',
+		tagsBase = 'tags',
+		title = '',
+		subtitle = '',
+		posts = [],
+		tags = [],
+		more = true,
+		search = true,
+		h2 = false,
+		count = 0,
+	} = $props();
 
 	const total: number = posts?.length ?? 0;
 	search = search && total>0;
-
 	if (posts && count>0) posts = posts.slice(0, count);
 
-	$: filter = $page.url?.searchParams.get('query');
-	$: currentPosts = filter ? fuzzySearch(posts, filter) : posts;
+	//const url: URL = new URL($page.url.href);
+	//console.log(url.href, url.search);
+
+	//let filter: string = getQsParam(url, 'query'); //$derived(getQsParam(url, 'query'));
+	//console.log(filter);
+	const filter = '';
+	let currentPosts: any[] = posts; //$derived(filter ? fuzzySearch(posts, filter) : posts);
+	console.log(currentPosts);
 </script>
 
 <div class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -41,7 +50,7 @@
 									<div class="space-y-6">
 										<div>
 											<h2 class="text-2xl font-bold leading-8 tracking-tight">
-												<a href={`/${post.type}/${post.slug}`} class="text-gray-900 dark:text-gray-100">
+												<a href={`/${root || post.type}/${post.slug}`} class="text-gray-900 dark:text-gray-100">
 													{post.title}
 												</a>
 											</h2>

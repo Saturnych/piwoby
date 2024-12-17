@@ -2,10 +2,12 @@ import { StaleWhileRevalidate } from 'workbox-strategies';
 import { precacheAndRoute, precache } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { build, files, prerendered, version } from '$service-worker';
-import { name, description, repository } from '../package.json';
+import { config } from '$lib/config';
 import * as static_public from '$env/static/public';
 
 declare let self: ServiceWorkerGlobalScope;
+
+const { name, description, repository } = config;
 
 const STATIC_ENV = Object.assign({}, static_public);
 const DEV_LOGS = String(STATIC_ENV['PUBLIC_DEV_LOGS']) === 'true';

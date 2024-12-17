@@ -3,18 +3,18 @@
 	import Error from '$lib/components/Error.svelte';
 	//import Comments from '$lib/components/comment/index.svelte';
 
-	export let brewery;
+	export let post;
 </script>
-{#if brewery}
+{#if post}
 <div class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
 	<article>
 		<div class="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
 			<header class="pt-6 xl:pb-6">
-				{#if brewery.image}
+				{#if post.image}
 					<div class=" w-full pb-6">
 						<img
-							alt={brewery.title}
-							src={brewery.image}
+							alt={post.title}
+							src={post.image}
 							class="object-cover object-center w-full h-auto"
 						/>
 					</div>
@@ -24,15 +24,15 @@
 						<h1
 							class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14"
 						>
-							{brewery.title}
+							{post.title}
 						</h1>
 					</div>
 					<dl class="space-y-10">
 						<div>
 							<dt class="sr-only">Published on</dt>
 							<dd class="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-								<time dateTime={brewery.date}>
-									{new Date(brewery.date).toLocaleDateString(config.locale, {
+								<time dateTime={post.date}>
+									{new Date(post.date).toLocaleDateString(config.locale, {
 										weekday: 'long',
 										year: 'numeric',
 										month: 'long',
@@ -64,16 +64,16 @@
 					class="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0"
 				>
 					<div class="prose max-w-none pt-10 pb-8 dark:prose-dark">
-						{@html brewery.content}
+						{@html post.content}
 					</div>
 				</div>
 				<footer class="">
 					<div
 						class="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y"
 					>
-						{#if brewery.next || brewery.prev}
+						{#if post.next || post.prev}
 							<div class="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
-								{#if brewery.prev}
+								{#if post.prev}
 									<div>
 										<h2 class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
 											Previous Article
@@ -81,11 +81,11 @@
 										<div
 											class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
 										>
-											<a href={`/breweries/${brewery.prev.slug}`}>{brewery.prev.title}</a>
+											<a href={`/breweries/${post.prev.slug}`}>{post.prev.title}</a>
 										</div>
 									</div>
 								{/if}
-								{#if brewery.next}
+								{#if post.next}
 									<div>
 										<h2 class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
 											Next Article
@@ -93,7 +93,7 @@
 										<div
 											class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
 										>
-											<a href={`/breweries/${brewery.next.slug}`}>{brewery.next.title}</a>
+											<a href={`/breweries/${post.next.slug}`}>{post.next.title}</a>
 										</div>
 									</div>
 								{/if}

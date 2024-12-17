@@ -1,3 +1,4 @@
+/*
 import type { HandleClientError } from '@sveltejs/kit';
 //import { uuid } from '$lib/utils';
 
@@ -10,3 +11,4 @@ export const handleError: HandleClientError = async ({ event, error, status, mes
 		errorId
 	};
 };
+*/

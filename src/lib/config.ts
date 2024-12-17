@@ -1,17 +1,17 @@
-import { version, author, homepage, repository } from '../../package.json';
 
 export const config = {
-	version,
-	author,
+	version: '0.0.2',
+	author: 'Denis Glebko',
+	repository: 'https://github.com/Saturnych/piwoby',
 	title: 'Piwo.by',
 	headerTitle: 'Пиво Беларуси',
 	description: 'Пиво Беларуси',
 	language: 'ru-ru',
 	locale: 'ru-RU',
 	theme: 'system', // system, dark or light
-	domain: homepage,
-	siteUrl: homepage,
-	siteRepo: repository.url,
+	domain: 'piwo.by',
+	siteUrl: 'https://piwo.by',
+	siteRepo: 'https://github.com/Saturnych/piwoby',
 	siteLogo: '/logo.png',
 	// image: '/img/avatar.png',
 	email: 'm@piwo.by',
@@ -65,7 +65,7 @@ export const comment = {
 	giscus: {
 		// Visit the link below, and follow the steps in the 'configuration' section
 		// https://giscus.app/
-		repo: repository.url.replace('https://github.com/','').replace('.git',''),
+		repo: 'Saturnych/piwoby',
 		reposId: 'R_kgDOLtsxPw',
 		category: 'General',
 		categoryId: 'DIC_kwDOLtsxP84Cercp',
@@ -90,7 +90,7 @@ export const comment = {
 	utterances: {
 		// Visit the link below, and follow the steps in the 'configuration' section
 		// https://utteranc.es/
-		repo: repository.url.replace('https://github.com/','').replace('.git',''),
+		repo: 'Saturnych/piwoby',
 		issueTerm: 'pathname', // supported options: pathname, url, title
 		label: 'Comment 💬', // label (optional): Comment 💬
 		// theme example: github-light, github-dark, preferred-color-scheme

@@ -3,9 +3,10 @@
 	import Head from '$lib/components/layout/Head.svelte';
 	import SearchTags from '$lib/components/SearchTags.svelte';
 
-	export let data;
-	const { slugs = [], breweries = [], tags = [], title = 'Пивзаводы', subtitle = 'Список белорусских пивзаводов на начало 21-го века', search = true, h2 = false } = data;
-	const total: number = breweries?.length ?? 0;
+	let { data } = $props();
+	
+	const { slugs = [], posts = [], tags = [], title = 'Пивзаводы', subtitle = 'Список белорусских пивзаводов на начало 21-го века', search = true, h2 = false } = data;
+	const total: number = posts?.length ?? 0;
 	const base: string = slugs?.length > 0 ? slugs[0] : 'breweries';
 </script>
 
@@ -19,8 +20,8 @@
 			{#if total<1}
 				Нет записей
 			{:else}
-				{#each breweries as brewery}
-					<Card card={brewery} />
+				{#each posts as post}
+					<Card card={post} />
 				{/each}
 			{/if}
 		</div>
