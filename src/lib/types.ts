@@ -2,13 +2,13 @@ export type ID = string;
 export type IsoDate = string | Date;
 export type Categories = 'sveltekit' | 'svelte';
 
-export interface Path {
+export type Path = {
 	path?: string;
 	type?: string;
 	slug: string;
 };
 
-export interface Author {
+export interface IAuthor {
 	id: ID;
 	name: string;
 	avatar?: string;
@@ -21,7 +21,7 @@ export interface Author {
 	href?: string;
 };
 
-export interface Post {
+export interface IPost {
 	draft: boolean;
 	date: IsoDate;
 	title: string;
@@ -31,35 +31,35 @@ export interface Post {
 	tags?: string[];
 };
 
-export interface Page extends Post {
+export interface IPage extends IPost {
 	children?: Page[];
 };
 
-export interface News extends Post {
+export interface INews extends IPost {
 	categories?: Categories[];
 };
 
-export interface Brewery extends Post {
+export interface IBrewery extends IPost {
 	description?: string;
 	href?: string;
 	labels?: string[];
 };
 
-export type Content = Path & Partial<Author> & Partial<News> & Partial<Brewery>;
+export type Content = Path & Partial<IAuthor> & Partial<INews> & Partial<IBrewery> & Partial<IPage>;
 
 export type Contents = {
-	authors: Author;
-	breweries: Brewery;
-	zavod: Brewery;
-	news: News;
-	pages: Page;
-	posts: News;
+	authors: IAuthor[];
+	breweries: IBrewery[];
+	zavod: IBrewery[];
+	news: INews[];
+	pages: IPage[];
+	posts: INews[];
 }
 
-export const isAuthor = (content: Content): content is Author => {
-  return 'id' in (content as Author);
+export const isAuthor = (content: Content): content is IAuthor => {
+	return 'id' in (content as IAuthor);
 };
 
-export const isPost = (content: Content): content is Post => {
-  return 'draft' in (content as Post);
+export const isPost = (content: Content): content is IPost => {
+	return 'draft' in (content as IPost);
 };

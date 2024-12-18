@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { isAuthor, isPost, Path, Brewery, Page, News, Post } from '$lib/types';
+import { isAuthor, isPost } from '$lib/types';
 import type { Content, Contents } from '$lib/types';
 import type { Module } from './$types';
 
