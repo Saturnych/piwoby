@@ -66,7 +66,7 @@ export const getUrlSegments = (url: URL) => {
 		href: url?.href || '',
 		origin: url?.origin || '',
 		pathname: url?.pathname || '',
-		search: url?.search || '',
+		//search: url?.search || '',
 	};
 	return segments;
 };

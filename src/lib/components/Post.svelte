@@ -5,12 +5,10 @@
 	import Error from '$lib/components/Error.svelte';
 	//import Comments from '$lib/components/comment/index.svelte';
 
-	export let base;
-	export let post;
-	export let title;
+	export let current;
 	export let author;
-
-	console.log('post:', post);
+	export let post;
+	export let tags;
 </script>
 {#if post}
 <div class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
@@ -126,14 +124,13 @@
 							</div>
 						{/if}
 					</div>
-					<div class="pt-4 xl:pt-8">
-						<a
-							href="/{post.type}"
-							class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-						>
-							&larr; Назад в "{title}"
-						</a>
-					</div>
+					{#if current?.title}
+						<div class="pt-4 xl:pt-8">
+							<a href="/{post.type}" class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">&larr;
+								Назад в "{current.title}"
+							</a>
+						</div>
+					{/if}
 				</footer>
 			</div>
 		</div>
