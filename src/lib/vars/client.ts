@@ -20,4 +20,3 @@ export const PUBLIC_SUPABASE_URL: string =
 	ENV.PUBLIC_SUPABASE_URL || 'https://your-project.supabase.co';
 export const PUBLIC_SUPABASE_ANON_KEY: string = ENV.PUBLIC_SUPABASE_ANON_KEY || '';
 export const PUBLIC_STORAGE_AVATARS_BUCKET: string = 'avatars';
-export const PUBLIC_SUPABASE_ANON_KEY: string = ENV.PUBLIC_SUPABASE_ANON_KEY || '';

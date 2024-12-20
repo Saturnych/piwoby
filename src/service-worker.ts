@@ -3,19 +3,17 @@ import { precacheAndRoute, precache } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { build, files, prerendered, version } from '$service-worker';
 import { config } from '$lib/config';
-import * as static_public from '$env/static/public';
+import { NODE_ENV, DEBUG } from '$lib/vars/client';
 
 declare let self: ServiceWorkerGlobalScope;
 
 const { name, description, repository } = config;
 
-const STATIC_ENV = Object.assign({}, static_public);
-const DEV_LOGS = String(STATIC_ENV['PUBLIC_DEV_LOGS']) === 'true';
 const SW_VERSION = `${name}-${version}`;
 
-if (DEV_LOGS) console.log('STATIC_ENV:', STATIC_ENV, 'SW_VERSION:', SW_VERSION);
+if (DEBUG) console.log('NODE_ENV:', NODE_ENV, 'SW_VERSION:', SW_VERSION);
 
-self.__WB_DISABLE_DEV_LOGS = !DEV_LOGS;
+self.__WB_DISABLE_DEV_LOGS = !DEBUG;
 
 self.addEventListener('message', (event) => {
 	if (event.data?.type === 'SKIP_WAITING') {

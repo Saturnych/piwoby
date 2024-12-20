@@ -31,17 +31,11 @@
 					<div class="flex flex-wrap">
 						{#each tags as tag}
 							<div class="mr-5">
-								<Tag text={tag.text} size="text-xs" />
-								<a
-									href={`/${tagsBase}/${tag.slug}`}
-									class="-ml-2 text-xs font-semibold uppercase text-gray-600 dark:text-gray-300"
-								>
-									{` (${tag.count})`}
-								</a>
+								<Tag text={tag} size="text-xs" />
 							</div>
 						{/each}
 					</div>
 				{/if}
 			</div>
 		</div>
-	</div>	
+	</div>

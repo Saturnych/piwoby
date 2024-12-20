@@ -5,9 +5,12 @@
 	import Post from '$lib/components/Post.svelte';
 
 	let { data } = $props();
-	const { author, post, posts, root, slug, slugs, tags } = data;
+	console.log('data:', data);
+
+	const { author, post, root, slug, slugs, tags, posts = [] } = data;
 
 	const path: string = !!slug ? `/${root}/${slug}` : `/${root}`;
+	console.log('path:', path);
 
 	const current: { href: string, title: string } = navLinks.find(f=>f.href===`/${root}`);
 	console.log('current:', current);

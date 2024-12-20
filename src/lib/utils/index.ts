@@ -48,7 +48,7 @@ export const loadContent = (url: URL): Record<string, string | string[] | Conten
 	const posts: Record<string, Content> = getContent(root);
   const post: Content = slug !== root ? posts.find(p=>p.slug===slug) : null;
   const author: Content = post?.author ? getContent('authors').find(a=>a.id===post.author && isAuthor(a)) : null;
-  const tags: string[] = post?.tags ? post.tags : [...new Set(posts.map(m=>m.tags).filter(f=>!!f))];
+  const tags: string[] = post?.tags ? post.tags : [...new Set(posts.map(m=>m.tags).flat().filter(f=>!!f))];
 	return {
     author,
     post,
