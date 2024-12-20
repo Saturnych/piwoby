@@ -1,9 +1,10 @@
+import { dev } from '$app/environment';
 import { env as dynamic_public } from '$env/dynamic/public';
 
 const ENV = Object.assign(dynamic_public, import.meta.env);
 
-export const NODE_ENV: string = ENV.NODE_ENV || ENV.VITE_USER_NODE_ENV || ENV.MODE || '';
-export const DEV_MODE: boolean = (!!NODE_ENV && NODE_ENV.indexOf('dev') > -1) || ENV.DEV;
+export const NODE_ENV: string = ENV.NODE_ENV || ENV.PUBLIC_ENV || ENV.VITE_USER_NODE_ENV || ENV.MODE || '';
+export const DEV_MODE: boolean = String(NODE_ENV).toLowerCase().startsWith('dev') || dev;
 export const DEBUG = !!DEV_MODE;
 export const SSR = !!ENV.SSR;
 export const PWD: string = ENV.PWD || '';

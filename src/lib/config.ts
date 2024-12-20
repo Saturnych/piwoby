@@ -1,5 +1,6 @@
 
 export const config = {
+	name: 'piwoby',
 	version: '0.0.2',
 	author: 'Denis Glebko',
 	repository: 'https://github.com/Saturnych/piwoby',
