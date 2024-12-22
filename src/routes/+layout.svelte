@@ -11,7 +11,7 @@
 
 	let { children, data } = $props();
 
-	const SW_ENABLED = dev;
+	const SW_ENABLED = false; //dev;
 </script>
 
 <div class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
