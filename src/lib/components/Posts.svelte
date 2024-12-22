@@ -30,8 +30,7 @@
 	//let filter: string = getQsParam(url, 'query'); //$derived(getQsParam(url, 'query'));
 	//console.log(filter);
 	const filter = '';
-	let currentPosts: any[] = posts; //$derived(filter ? fuzzySearch(posts, filter) : posts);
-	console.log(currentPosts);
+	let currentPosts: any[] = posts;
 </script>
 
 <div class="divide-y divide-gray-200 dark:divide-gray-700">
