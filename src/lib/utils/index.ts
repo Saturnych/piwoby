@@ -3,13 +3,12 @@ import { isAuthor, isPost } from '$lib/types';
 import type { Content, Contents } from '$lib/types';
 import type { Module } from './$types';
 
-export const parseContent = <T>(paths: Record<string, Module>, type: string = 'news'): T[] => {
-	console.log(paths);
+export const parseContent = <T>(files: Record<string, Module>, type: string = 'news'): T[] => {
 	const subs: T[] = []; // Post[]
-	for (const path in paths) {
-		const file = paths[path];
-		const slug = path.split('/').at(-1)?.replace('.md', '').toLowerCase();
-		if (file && slug && (typeof file === 'object') && ('metadata' in file)) {
+	for (const path in files) {
+		const file: Module = files[path];
+		if (file && (typeof file === 'object') && ('metadata' in file)) {
+			const slug = path.toLowerCase().replace('.md', '/').split('/').filter(f=>!!f).slice(1).join('/');
 			const metadata = file.metadata as Omit<T, Path>;
 			const post = { ...metadata, slug, path, type } satisfies T;
 			!post.draft && subs.push(post);
@@ -18,36 +17,42 @@ export const parseContent = <T>(paths: Record<string, Module>, type: string = 'n
 	return subs.sort((first, second) => (new Date(second.date).getTime() - new Date(first.date).getTime()));
 };
 
-export const getContent = (type: string = 'news'): Content[] => {
-	const content = {
+export const getModules = (): Record<string, Module> => {
+	return {
 		authors: import.meta.glob('/content/authors/*.md', { eager: true }),
-		breweries: import.meta.glob('/content/breweries/*.md', { eager: true }),
+		zavod: import.meta.glob('/content/zavod/*.md', { eager: true }),
 		news: import.meta.glob('/content/news/*.md', { eager: true }),
 		pages: import.meta.glob('/content/pages/*.md', { eager: true }),
 		posts: import.meta.glob('/content/posts/*.md', { eager: true }),
 	} as Record<string, Module>;
-	content['zavod'] = content['breweries'];
-  return parseContent<Content>(content[type], type);
+};
+
+export const getContentByTypes = (types?: string[]): Contents => {
+	const content: Record<Contents> = {};
+	const modules: Record<string, Module> = getModules();
+	if (!types || types?.length<1) types = Object.keys(modules);
+	for (const type of types) {
+		content[type] = parseContent<Content>(modules[type], type);
+	}
+	return content;
 };
 
 export const getSlugs = (pathname: string = ''): string[] => {
-	const slugs: string[] = pathname.split('/').filter(p=>!!p).map(s=>decodeURIComponent(s));
-	const slug: string = slugs?.length > 0 ? [].concat(slugs).reverse()[0] : '';
-	if (slug.startsWith('manifest')) throw error(404, 'Not found');
-	return slugs;
+	return pathname.split('/').filter(p=>!!p).map(s=>decodeURIComponent(s));
 };
 
 export const getEntryBySlug = (slug: string, type: string = 'news') => {
-	return [].concat(getContent(type)).find(f=>!!f && f.slug===slug);
+	return [].concat(getContentByTypes([type])[type]).find(f=>f.slug===slug);
 };
 
 export const loadContent = (url: URL): Record<string, string | string[] | Content | Content[]> => {
   const slugs = getSlugs(url?.pathname || '');
-  const slug = [].concat(slugs).reverse()[0];
+  const slug = [].concat(slugs).join('/');
   const root = slugs[0];
-	const posts: Record<string, Content> = getContent(root);
+	const contents: Contents = getContentByTypes([root, 'authors']);
+	const posts: Content[] = contents[root];
   const post: Content = slug !== root ? posts.find(p=>p.slug===slug) : null;
-  const author: Content = post?.author ? getContent('authors').find(a=>a.id===post.author && isAuthor(a)) : null;
+  const author: Content = post?.author ? contents['authors'].find(a=>a.id===post.author && isAuthor(a)) : null;
   const tags: string[] = post?.tags ? post.tags : [...new Set(posts.map(m=>m.tags).flat().filter(f=>!!f))];
 	return {
     author,

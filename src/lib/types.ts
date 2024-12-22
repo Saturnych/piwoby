@@ -47,7 +47,9 @@ export interface IBrewery extends IPost {
 
 export type Content = Path & Partial<IAuthor> & Partial<INews> & Partial<IBrewery> & Partial<IPage>;
 
-export type Contents = {
+export type Contents = Record<string, Content[]>;
+
+export type TContents = {
 	authors: IAuthor[];
 	breweries: IBrewery[];
 	zavod: IBrewery[];

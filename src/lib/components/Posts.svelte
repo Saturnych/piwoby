@@ -50,7 +50,7 @@
 									<div class="space-y-6">
 										<div>
 											<h2 class="text-2xl font-bold leading-8 tracking-tight">
-												<a href={`/${root || post.type}/${post.slug}`} class="text-gray-900 dark:text-gray-100">
+												<a href="/{post.slug}" class="text-gray-900 dark:text-gray-100">
 													{post.title}
 												</a>
 											</h2>
@@ -67,7 +67,7 @@
 									{#if more}
 										<div class="text-base font-medium leading-6">
 											<a
-												href={`/${post.type}/${post.slug}`}
+												href="/{post.slug}"
 												class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
 												aria-label={`Читать "${post.title}"`}
 											>

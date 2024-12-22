@@ -1,6 +1,6 @@
 ---
 name: Денис Глебко
-avatar: /img/saturnych.jpg
+avatar: /assets/img/saturnych.jpg
 occupation: Tech Lead
 company: Top Tier Authentics
 email: saturnych@gmail.com

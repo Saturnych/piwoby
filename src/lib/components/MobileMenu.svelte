@@ -64,7 +64,7 @@
 			{#each navLinks as link}
 				<div class="px-12 py-4">
 					<a
-						href={link.href}
+						href="/{link.slug}"
 						class="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
 						on:click={toggleDarkMode}
 					>

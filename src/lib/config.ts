@@ -1,5 +1,5 @@
 
-export const config = {
+export const config: Record<string, string | boolean> = {
 	name: 'piwoby',
 	version: '0.0.2',
 	author: 'Denis Glebko',
@@ -13,8 +13,8 @@ export const config = {
 	domain: 'piwo.by',
 	siteUrl: 'https://piwo.by',
 	siteRepo: 'https://github.com/Saturnych/piwoby',
-	siteLogo: '/logo.png',
-	// image: '/img/avatar.png',
+	siteLogo: '/assets/logo.png',
+	// image: '/assets/img/avatar.png',
 	email: 'm@piwo.by',
 	github: 'https://github.com/Saturnych',
 	twitter: 'https://twitter.com/Saturnych',
@@ -29,39 +29,39 @@ export const config = {
 	multiuser: false,
 };
 
-export const user = {
+export const user: Record<string, string> = {
 	id: 'Saturnych',
 	name: 'Денис Глебко',
-	avatar: '/img/saturnych.jpg',
+	avatar: '/assets/img/saturnych.jpg',
 	email: 'saturnych@gmail.com',
 	twitter: 'https://twitter.com/Saturnych',
 	linkedin: 'https://www.linkedin.com/in/saturn/',
 	github: 'https://github.com/Saturnych',
 };
 
-export const navLinks = [
-	{ href: '/news', title: 'Новости' },
-	{ href: '/posts', title: 'Статьи' },
-	{ href: '/zavod', title: 'Пивзаводы' },
-	//{ href: '/projects', title: 'Projects' },
-	{ href: '/pages/about', title: 'О сайте' },
+export const navLinks: { slug: string; title: string; }[] = [
+	{ slug: 'news', title: 'Новости' },
+	{ slug: 'posts', title: 'Статьи' },
+	{ slug: 'zavod', title: 'Пивзаводы' },
+	//{ slug: 'projects', title: 'Projects' },
+	{ slug: 'pages/about', title: 'О сайте' },
 ];
 
-export const openGraph = {
+export const openGraph: Record<string, number | boolean> = {
 	enabled: true,
 	width: 1200,
 	height: 630
 };
 
 // supported systems: googleAnalytics, plausible, and simpleAnalytics
-export const analytics = {
+export const analytics: Record<string, string | boolean> = {
 	googleAnalyticsId: '', // e.g. UA-000000-2 or G-XXXXXXX
 	plausibleDomain: '', // e.g. pied-piper-blog.netlify.app
 	simpleAnalytics: false // true or false
 };
 
 // supported providers: giscus, utterances
-export const comment = {
+export const comment: Record<string, string | object> = {
 	provider: 'giscus',
 	giscus: {
 		// Visit the link below, and follow the steps in the 'configuration' section

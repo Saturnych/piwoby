@@ -1,29 +1,29 @@
 import RSS from 'rss';
-import type { Content } from '$lib/types';
-import { getContent } from '$lib/utils';
+import type { Contents } from '$lib/types';
+import { getContentByTypes } from '$lib/utils';
 import { config } from '$lib/config';
 
 export const prerender = true;
 
 // Reference: https://github.com/sveltejs/kit/blob/master/examples/hn.svelte.dev/src/routes/%5Blist%5D/rss.js
-/** @type {import('@sveltejs/kit').RequestHandler} */
-export async function GET() {
+export const GET = () => {
 	const feed = new RSS({
 		title: config.title + ' - RSS Feed',
 		site_url: config.siteUrl,
 		feed_url: config.siteUrl + '/rss.xml'
 	});
 
-	const posts: Record<string, Content> = getContent();
-
-	posts.forEach((posts) => {
-		feed.item({
-			title: posts.title,
-			url: config.siteUrl + `/${posts.type}/${posts.slug}`,
-			date: posts.date,
-			description: posts.summary
+	const content: Contents = getContentByTypes(['news','posts','zavod','pages']);
+	for (const type in content) {
+		content[type].forEach((post) => {
+			feed.item({
+				title: post.title,
+				url: config.siteUrl + `/${post.slug}`,
+				date: post.date,
+				description: post.summary,
+			});
 		});
-	});
+	}
 
 	return new Response(feed.xml({ indent: true }), {
 		headers: {
@@ -31,7 +31,7 @@ export async function GET() {
 			'Content-Type': 'application/rss+xml'
 		}
 	});
-}
+};
 
 // misc notes for future users
 
