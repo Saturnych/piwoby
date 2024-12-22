@@ -3,11 +3,18 @@
 	import type { PageData } from './$types';
 	import { dev } from '$app/environment';
 	import { page } from '$app/stores';
-	import Metrika from '$lib/components/Metrika.svelte';
 	import Transition from '$lib/components/layout/Transition.svelte';
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
-	import Analytics from '$lib/components/analytics/index.svelte';
+	
+	//import Analytics from '$lib/components/analytics/index.svelte';
+	//import Metrika from '$lib/components/Metrika.svelte';
+	/*
+	{#if !dev}
+		<Metrika />
+		<Analytics />
+	{/if}
+	*/
 
 	let { children, data } = $props();
 
@@ -25,11 +32,6 @@
 		<Footer />
 	</div>
 </div>
-
-{#if !dev}
-	<Metrika />
-	<Analytics />
-{/if}
 
 {#if SW_ENABLED}
 	{#await import('$lib/components/ReloadPrompt.svelte') then { default: ReloadPrompt }}
